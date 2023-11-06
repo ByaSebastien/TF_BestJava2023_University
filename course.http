@@ -1,0 +1,33 @@
+POST http://localhost:8080/courses
+Content-Type: application/json
+
+#BODY de la requêtes
+{
+  "name": "PHYS11BA",
+  "summary": "Cours de physique 1"
+}
+
+### GET courses
+GET http://localhost:8080/courses
+Content-Type: application/json
+
+### GET ONE courses
+GET http://localhost:8080/courses/1
+Content-Type: application/json
+
+### REPLACE ONE
+PUT http://localhost:8080/courses/1
+Content-Type: application/json
+
+{
+  "name": "PHYS12BA",
+  "summary": "Electromecha"
+}
+
+### UPDATE ONE
+PATCH http://localhost:8080/courses/1
+Content-Type: application/json
+
+{
+  "name": "PHYS12BA"
+}
