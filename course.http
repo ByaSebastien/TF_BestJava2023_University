@@ -3,7 +3,8 @@ Content-Type: application/json
 
 #BODY de la requêtes
 {
-  "name": "PHYS11BA",
+  "id": "PHYS11BA",
+  "name": "Physique général 1",
   "summary": "Cours de physique 1"
 }
 
@@ -12,11 +13,11 @@ GET http://localhost:8080/courses
 Content-Type: application/json
 
 ### GET ONE courses
-GET http://localhost:8080/courses/1
+GET http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
 
 ### REPLACE ONE
-PUT http://localhost:8080/courses/1
+PUT http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
 
 {
@@ -25,9 +26,13 @@ Content-Type: application/json
 }
 
 ### UPDATE ONE
-PATCH http://localhost:8080/courses/1
+PATCH http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
 
 {
-  "name": "PHYS12BA"
+  "name": "PHYS13BA"
 }
+
+### DELETE ONE
+DELETE http://localhost:8080/courses/PHYS11BA
+Content-Type: application/json

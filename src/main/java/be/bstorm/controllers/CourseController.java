@@ -1,10 +1,9 @@
 package be.bstorm.controllers;
 
 import be.bstorm.models.entities.Course;
-import be.bstorm.models.form.FCourseCreate;
+import be.bstorm.repositories.CourseRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,22 +12,23 @@ import java.util.List;
 @RestController
 @RequestMapping(path = {"/courses"})
 public class CourseController {
-    private final List<Course> courses = new ArrayList<>();
+    private final CourseRepository courseRepository;
+
+    public CourseController(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
 
     // Renvoyé le type de la valeur au lieu de renvoyer le nom d'un template
     @GetMapping
     public List<Course> readAllAction() {
-        return courses;
+        return this.courseRepository.findAll();
     }
 
     @GetMapping(path = {"/{id}"})
     public Course readOneAction(
             @PathVariable("id") String id
     ) {
-        return courses.stream()
-                .filter(it -> it.getId().equals(id))
-                .findFirst()
-                .orElseThrow();
+        return this.courseRepository.findById(id).orElseThrow();
     }
 
     @PostMapping
@@ -36,10 +36,7 @@ public class CourseController {
             //@RequestBody car tout message échangé dans le cadre d'une application REST est échangé dans le body de la requête HTTP
             @RequestBody Course course
     ) {
-        course.setId(courses.size() + 1+ "");
-        courses.add(course);
-
-        return course;
+        return this.courseRepository.save(course);
     }
 
     @PutMapping(path = {"/{id}"})
@@ -47,15 +44,10 @@ public class CourseController {
             @PathVariable("id") String id,
             @RequestBody Course course
     ) {
-        Course original = courses.stream()
-                .filter(it -> it.getId().equals(id))
-                .findFirst()
-                .orElseThrow();
-        int index = courses.indexOf(original);
+        Course toUpdate = this.courseRepository.findById(id).orElseThrow();
+        course.setId(toUpdate.getId());
 
-        courses.set(index, course);
-
-        return course;
+        return this.courseRepository.save(course);
     }
 
     @PatchMapping(path = {"/{id}"})
@@ -63,9 +55,7 @@ public class CourseController {
             @PathVariable("id") String id,
             @RequestBody Course course
     ) {
-        Course original = courses.stream()
-                .filter(it -> it.getId().equals(id))
-                .findFirst()
+        Course original = this.courseRepository.findById(id)
                 .orElseThrow();
 
         if (course.getName() != null) {
@@ -75,6 +65,13 @@ public class CourseController {
             original.setSummary(course.getSummary());
         }
 
-        return original;
+        return this.courseRepository.save(original);
+    }
+
+    @DeleteMapping(path = {"/{id}"})
+    public void deleteOneAction(
+            @PathVariable("id") String id
+    ) {
+        this.courseRepository.deleteById(id);
     }
 }
