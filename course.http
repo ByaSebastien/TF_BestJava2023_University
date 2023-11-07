@@ -1,9 +1,10 @@
 POST http://localhost:8080/courses
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzUwNTYzfQ.uVyptZSixOvz9IoWoIZ3UzbHGZoyd9Eqf0VEhTqWeCGrUrW3yQnlVOenrF8MNbuL4_j6DO-GHVYj5q48k2efmQ
 
 #BODY de la requêtes
 {
-  "id": "PHYS11BA",
+  "id": "PHYS13BA",
   "name": "Physique général 1",
   "summary": "Cours de physique 1"
 }
@@ -11,6 +12,7 @@ Content-Type: application/json
 ### GET courses
 GET http://localhost:8080/courses
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzUwNDM0fQ.r9mF5jORi2BnTYlaWOIQfrXtFGbX9vt40bTd9Lhl9ninVpcFYb2xUVBespQyVTkrxV9pIdfoyWugA0icyalH_g
 
 ### GET ONE courses
 GET http://localhost:8080/courses/PHYS11BA
@@ -19,7 +21,7 @@ Content-Type: application/json
 ### REPLACE ONE
 PUT http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzUwNDM0fQ.r9mF5jORi2BnTYlaWOIQfrXtFGbX9vt40bTd9Lhl9ninVpcFYb2xUVBespQyVTkrxV9pIdfoyWugA0icyalH_g
 {
   "name": "PHYS12BA",
   "summary": "Electromecha"
@@ -36,3 +38,13 @@ Content-Type: application/json
 ### DELETE ONE
 DELETE http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
+
+
+### User - Register
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "flavian",
+  "password": "Blop"
+}

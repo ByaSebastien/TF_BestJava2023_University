@@ -2,6 +2,8 @@ package be.bstorm.controllers;
 
 import be.bstorm.models.entities.Course;
 import be.bstorm.repositories.CourseRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class CourseController {
     }
 
     @PostMapping
+    @PreAuthorize(value = "hasRole('ADMIN')")
     public Course createAction(
             //@RequestBody car tout message échangé dans le cadre d'une application REST est échangé dans le body de la requête HTTP
             @RequestBody Course course
