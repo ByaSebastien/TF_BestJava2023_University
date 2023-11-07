@@ -30,23 +30,28 @@ public class JwtFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        final String authorization = request.getHeader("Authorization");
+        String method = request.getMethod();
+        if (!method.equals("OPTIONS")) {
+            final String authorization = request.getHeader("Authorization");
 
-        if (authorization != null && authorization.startsWith("Bearer ")) {
-            String token = authorization.replace("Bearer ", "");
-            String username = jwtUtil.getUsernameFromToken(token);
+            System.out.println(method);
+            if (authorization != null && authorization.startsWith("Bearer ")) {
+                String token = authorization.replace("Bearer ", "");
+                String username = jwtUtil.getUsernameFromToken(token);
 
-            UserDetails user = this.detailsService.loadUserByUsername(username);
+                UserDetails user = this.detailsService.loadUserByUsername(username);
 
-            UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(
-                    user,
-                    null,
-                    user.getAuthorities()
-            );
-            upat.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(
+                        user,
+                        null,
+                        user.getAuthorities()
+                );
+                upat.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-            SecurityContextHolder.getContext().setAuthentication(upat); //Après cette ligne ci, je suis connecté
+                SecurityContextHolder.getContext().setAuthentication(upat); //Après cette ligne ci, je suis connecté
+            }
         }
+
         filterChain.doFilter(request, response);
     }
 }

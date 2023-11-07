@@ -22,6 +22,7 @@ public class CourseController {
 
     // Renvoyé le type de la valeur au lieu de renvoyer le nom d'un template
     @GetMapping
+    @PreAuthorize(value = "hasRole('Admin')")
     public List<Course> readAllAction() {
         return this.courseRepository.findAll();
     }
@@ -34,7 +35,7 @@ public class CourseController {
     }
 
     @PostMapping
-    @PreAuthorize(value = "hasRole('ADMIN')")
+    @PreAuthorize(value = "hasRole('Admin')")
     public Course createAction(
             //@RequestBody car tout message échangé dans le cadre d'une application REST est échangé dans le body de la requête HTTP
             @RequestBody Course course

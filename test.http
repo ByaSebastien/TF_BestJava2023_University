@@ -1,0 +1,3 @@
+GET http://localhost:8080/courses
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJzZWJhc3RpZW4iLCJpYXQiOjE2OTkzNjEwNjJ9.eM7gwutPjsbrMIa3FHcECSB-bkgQ_kZUv6HfNluZZygJRLW7bqLEe8gRFUfeAsNaDk7DhDpNTgFD7jjBgWsMCQ

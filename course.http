@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzd
 ### GET courses
 GET http://localhost:8080/courses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzUwNDM0fQ.r9mF5jORi2BnTYlaWOIQfrXtFGbX9vt40bTd9Lhl9ninVpcFYb2xUVBespQyVTkrxV9pIdfoyWugA0icyalH_g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzYzMTUwfQ.JZje2Xk1UcofSmCuEjhaPvi_eBaIlK63CBwQIfa7-gciXRcQCRTBHt_ooFz7R1-EzF_eZZo9_16mawS1LgvqIg
 
 ### GET ONE courses
 GET http://localhost:8080/courses/PHYS11BA
@@ -22,6 +22,7 @@ Content-Type: application/json
 PUT http://localhost:8080/courses/PHYS11BA
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdG9yIjoiVGVjaG5vZnV0dXIiLCJzdWIiOiJmbGF2aWFuIiwiaWF0IjoxNjk5MzUwNDM0fQ.r9mF5jORi2BnTYlaWOIQfrXtFGbX9vt40bTd9Lhl9ninVpcFYb2xUVBespQyVTkrxV9pIdfoyWugA0icyalH_g
+
 {
   "name": "PHYS12BA",
   "summary": "Electromecha"

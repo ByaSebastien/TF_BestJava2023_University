@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
@@ -32,10 +32,9 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain httpSecurity(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
-
-        System.out.println("BLOP");
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configure(http))
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/login", "/register").permitAll();
                     registry.anyRequest().authenticated();
@@ -51,8 +50,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry
-                .addMapping("/**")
-                .allowedOrigins("http://localhost:4200", "http://localhost:5500");
+                .addMapping("/**");
     }
 
 

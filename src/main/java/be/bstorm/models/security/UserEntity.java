@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,11 +29,12 @@ public class UserEntity extends BaseEntity<String> implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @ManyToMany(targetEntity = RoleEntity.class, fetch = FetchType.EAGER)
+    private List<RoleEntity> roles;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Stream.of("ROLE_USER")
-                .map(SimpleGrantedAuthority::new)
-                .toList();
+        return this.roles;
     }
 
     @Override
